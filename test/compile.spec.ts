@@ -1,4 +1,5 @@
 import {Compiler} from '../src/core/compiler';
+import {Plugin} from '../src/types';
 import {removeSync} from 'fs-extra';
 
 class CustomCompiler extends Compiler {
@@ -7,26 +8,27 @@ class CustomCompiler extends Compiler {
     }
 }
 
+const pathCtx: any = {
+    dependencyFullPath: () => `${__dirname}/src1/path.ts`,
+    make: () => {},
+}
+const mainCtx: any = {
+    dependencyFullPath: () => `${__dirname}/src1/main.ts`,
+    make: () => {},
+}
+
 describe('Compiler Option Test', () => {
     beforeEach(() => {
         removeSync(`${__dirname}/src1/dist/`);
     });
     it('tsc1 option', async () => {
         let pathCountOnDest = 0;
-        const pathCtx: any = {
-            dependencyFullPath: () => `${__dirname}/src1/path.ts`,
-            make: () => {},
+
+        const compileSumPlugin: Plugin = {
             onDest:({filePath}) => {
                 if (filePath === `${__dirname}/src1/dist/path.js`) {
                     pathCountOnDest++;
                 }
-                return true;
-            }
-        }
-        const mainCtx: any = {
-            dependencyFullPath: () => `${__dirname}/src1/main.ts`,
-            make: () => {},
-            onDest:({filePath}) => {
                 return true;
             }
         }
@@ -36,7 +38,8 @@ describe('Compiler Option Test', () => {
             baseDir: `${__dirname}/src1`,
             outDir: `${__dirname}/src1/dist`
         });
-        compiler.addPlugin(pathCtx);
+        // 加一个计数插件，观察path.js编译次数
+        compiler.addPlugin(compileSumPlugin);
         console.timeEnd('new Compiler');
 
         console.time('compile path.ts');

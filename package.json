@@ -1,6 +1,6 @@
 {
   "name": "makit-tsc",
-  "version": "0.0.0-development",
+  "version": "0.0.1",
   "discription": "makit-tsc",
   "scripts": {
     "preversion": "npm run lint && npm run cover",
