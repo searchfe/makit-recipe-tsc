@@ -1,7 +1,7 @@
 {
-  "name": "makit-tsc",
+  "name": "makit-recipe-tsc",
   "version": "0.0.1",
-  "discription": "makit-tsc",
+  "discription": "makit-recipe-tsc",
   "scripts": {
     "preversion": "npm run lint && npm run cover",
     "lint": "eslint src/**/*.ts",
@@ -23,10 +23,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/searchfe/makit-tsc"
-
+    "url": "git+https://github.com/searchfe/makit-recipe-tsc.git"
   },
-  "homepage": "https://github.com/searchfe/makit-tsc",
+  "homepage": "https://github.com/searchfe/makit-recipe-tsc",
   "devDependencies": {
     "@semantic-release/changelog": "^3.0.2",
     "@semantic-release/commit-analyzer": "^6.1.0",
@@ -80,7 +79,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
-  "author": "",
+  "author": "searchfe@baidu.com",
   "files": [
     "dist",
     "*.json",
@@ -101,5 +100,15 @@
       "html"
     ],
     "all": true
-  }
+  },
+  "description": "![Language](https://img.shields.io/badge/-TypeScript-blue.svg) [![Build Status](https://travis-ci.org/searchfe/makit-recipe-tsc.svg?branch=master)](https://travis-ci.org/searchfe/makit-recipe-tsc) [![Coveralls](https://img.shields.io/coveralls/searchfe/makit-recipe-tsc.svg)](https://coveralls.io/github/searchfe/makit-recipe-tsc) [![npm package](https://img.shields.io/npm/v/makit-recipe-tsc.svg)](https://www.npmjs.org/package/makit-recipe-tsc) [![npm downloads](http://img.shields.io/npm/dm/makit-recipe-tsc.svg)](https://www.npmjs.org/package/makit-recipe-tsc) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)",
+  "bugs": {
+    "url": "https://github.com/searchfe/makit-recipe-tsc/issues"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [
+    "makit"
+  ]
 }
