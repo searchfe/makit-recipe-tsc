@@ -61,4 +61,27 @@ describe('Compiler Option Test', () => {
         expect(templateHTML).toEqual('maked');
 
     });
+
+    it('tsc throw error', async() => {
+        const mainCtx: any = {
+            dependencyFullPath: () => `${__dirname}/src3/main.ts`,
+            make: async (str) => {
+            },
+            onDest:({filePath}) => {
+                return true;
+            }
+        }
+
+        const compiler = new CustomCompiler({
+            baseDir: `${__dirname}/src3`,
+            outDir: `${__dirname}/src3/dist`
+        });
+
+        try {
+            await compiler.compile(mainCtx)
+        } catch (error) {
+            // 会报错：error TS2339: Property 'notDefined' does not exist on type 'Window'
+            expect(error.toString()).toContain('TS2339:');
+        }
+    })
 });
