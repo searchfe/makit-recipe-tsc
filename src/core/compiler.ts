@@ -61,18 +61,15 @@ export class Compiler implements ForRule {
             const dep = deps.shift();
             await ctx.make(dep);
         }
-        // content = this.preCompile(content, filePath);
-        // put into cache for ts compile host to get preCompile content
-        // this.contentCache.set(filePath, content);
 
         const project = this.getProject();
-        // console.log(content);
-        // const sourcrFile = createSourceFile(filePath, "content", this.compilerOptions.target, true)
-        // program.emit(sourcrFile);
         project.addSourceFileAtPath(filePath);
+        // throw error
+        const diagnostics = project.getPreEmitDiagnostics();
+        if (diagnostics.length > 0) {
+            throw new Error(project.formatDiagnosticsWithColorAndContext(diagnostics));
+        }
         return project.emit();
-
-        // this.denpency
     }
 
     protected getDenpencies(content: string, filePath: string) {
