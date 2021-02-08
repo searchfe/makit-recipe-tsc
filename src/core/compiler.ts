@@ -63,9 +63,9 @@ export class Compiler implements ForRule {
         }
 
         const project = this.getProject();
-        project.addSourceFileAtPath(filePath);
+        const sourcefile = project.addSourceFileAtPath(filePath);
         // throw error
-        const diagnostics = project.getPreEmitDiagnostics();
+        const diagnostics = sourcefile.getPreEmitDiagnostics();
         if (diagnostics.length > 0) {
             throw new Error(project.formatDiagnosticsWithColorAndContext(diagnostics));
         }
