@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/searchfe/makit-recipe-tsc/compare/v1.0.0...v1.0.1) (2021-02-08)
+
+
+### Bug Fixes
+
+* 报错改为文件粒度 ([3654f37](https://github.com/searchfe/makit-recipe-tsc/commit/3654f37770b945c19cebfe74ab60c2ee51c83722))
+
 # 1.0.0 (2021-02-05)
 
 
