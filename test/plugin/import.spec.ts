@@ -12,7 +12,7 @@ class CustomCompiler extends Compiler {
 
 describe('Compiler Option Test', () => {
     beforeEach(() => {
-        removeSync(`${dir}/src1/dist/`);
+        removeSync(`${dir}/src1/dist3/`);
     });
     it('tsc1 option', async () => {
 
