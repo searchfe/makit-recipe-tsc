@@ -23,6 +23,10 @@ export class Compiler implements ForRule {
     private project: Project;
     /** file host */
     private host: FileSystemHost;
+    /** 记录编译过一次的 file 需要 refresh SourceFile */
+    private fileNeedToRefreshMap: {
+        [filePath: string]: true;
+    } = {};
 
     constructor(options : Options) {
         this.baseDir = options.baseDir;
@@ -64,6 +68,10 @@ export class Compiler implements ForRule {
 
         const project = this.getProject();
         const sourcefile = project.addSourceFileAtPath(filePath);
+        if (this.fileNeedToRefreshMap[filePath]) {
+            sourcefile.refreshFromFileSystemSync();
+        }
+        this.fileNeedToRefreshMap[filePath] = true;
         // throw error
         const diagnostics = sourcefile.getPreEmitDiagnostics();
         if (diagnostics.length > 0) {
@@ -135,6 +143,8 @@ export class Compiler implements ForRule {
                 'compilerOptions': this.compilerOptions,
                 'fileSystem': this.host
             });
+            // 先添加所有文件，否则编译单个文件没加载全局的 d.ts 会报错
+            this.project.addSourceFilesFromTsConfig(this.configPath);
         }
         return this.project;
     }
