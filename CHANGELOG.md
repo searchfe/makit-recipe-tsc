@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/searchfe/makit-recipe-tsc/compare/v1.1.0...v1.1.1) (2021-02-25)
+
+
+### Bug Fixes
+
+* 实例化 Project 后添加 tsconfig 中的所有文件会导致编译第一个文件时把整个 src 都编译了，改为仅添加 d.ts 加载必要的全局类型声明 ([ee9c47e](https://github.com/searchfe/makit-recipe-tsc/commit/ee9c47e62ea2eb0ea74e2f290071cc5b8d5cb3ed))
+
 # [1.1.0](https://github.com/searchfe/makit-recipe-tsc/compare/v1.0.1...v1.1.0) (2021-02-24)
 
 
