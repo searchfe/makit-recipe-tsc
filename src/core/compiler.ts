@@ -143,8 +143,8 @@ export class Compiler implements ForRule {
                 'compilerOptions': this.compilerOptions,
                 'fileSystem': this.host
             });
-            // 先添加所有文件，否则编译单个文件没加载全局的 d.ts 会报错
-            this.project.addSourceFilesFromTsConfig(this.configPath);
+            // 先添加 baseDir 下的所有 d.ts，防止编译单文件时未加载全局变量/类型会报错
+            this.project.addSourceFilesAtPaths(this.baseDir + '/**/*.d.ts');
         }
         return this.project;
     }
