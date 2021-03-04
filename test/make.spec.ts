@@ -15,6 +15,13 @@ describe('Compiler Option Test', () => {
         let text = 'unmake';
         const pathCtx: any = {
             dependencyFullPath: () => `${__dirname}/src2/path.ts`,
+            make: async (str) => {
+                if (str === './dist/page.san.html') {
+                    text = 'maked'
+                } else {
+                    throw new Error('un caught makefile');
+                }
+            },
             getDepencies: ({content, filePath, baseDir}) => {
                 return ['./dist/page.san.html'];
             },
@@ -22,7 +29,6 @@ describe('Compiler Option Test', () => {
                 if (filePath === `${__dirname}/src2/main.ts`) {
                     return content.replace(`import templateHTML from './page.san.html!tpl';`, `const templateHTML = "${text}";`);
                 }
-                // console.log(9999, filePath);
                 return content;
             },
             onDest:({filePath}) => {
@@ -53,7 +59,7 @@ describe('Compiler Option Test', () => {
         });
         compiler.addPlugin(pathCtx);
 
-        // await compiler.compile(pathCtx);
+        await compiler.compile(pathCtx);
 
         await compiler.compile(mainCtx);
 
