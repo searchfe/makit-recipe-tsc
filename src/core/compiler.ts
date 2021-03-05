@@ -72,12 +72,9 @@ export class Compiler implements ForRule {
             sourcefile.refreshFromFileSystemSync();
         }
         this.fileNeedToRefreshMap[filePath] = true;
-        // throw error
-        const diagnostics = sourcefile.getPreEmitDiagnostics();
-        if (diagnostics.length > 0) {
-            throw new Error(project.formatDiagnosticsWithColorAndContext(diagnostics));
-        }
-        return project.emit();
+        return project.emit({
+            targetSourceFile: sourcefile
+        });
     }
 
     protected getDenpencies(content: string, filePath: string) {
@@ -143,8 +140,6 @@ export class Compiler implements ForRule {
                 'compilerOptions': this.compilerOptions,
                 'fileSystem': this.host
             });
-            // 先添加 baseDir 下的所有 d.ts，防止编译单文件时未加载全局变量/类型会报错
-            this.project.addSourceFilesAtPaths(this.baseDir + '/**/*.d.ts');
         }
         return this.project;
     }

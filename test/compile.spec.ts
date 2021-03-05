@@ -50,8 +50,8 @@ describe('Compiler Option Test', () => {
         await compiler.compile(mainCtx);
         console.timeEnd('compile main.ts');
 
-        // 现阶段会执行2次
-        expect(pathCountOnDest).toEqual(2);
+        // 不会读取依赖，只执行1次
+        expect(pathCountOnDest).toEqual(1);
         const {ClassPath} = require(`${__dirname}/src1/dist/path.js`);
         const cp = new ClassPath();
         expect(cp.name).toEqual('zhoujielun');

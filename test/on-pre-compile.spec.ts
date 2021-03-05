@@ -18,7 +18,6 @@ describe('OnPreCompile Test', () => {
                 if (filePath === `${__dirname}/src1/path.ts`) {
                     return content.replace('zhoujielun', 'wangxinlin');
                 }
-                // console.log(9999, filePath);
                 return content;
             }
         }
@@ -33,10 +32,10 @@ describe('OnPreCompile Test', () => {
         });
         compiler.addPlugin(pathCtx);
         console.timeEnd('new Compiler');
-        console.time('compile main.ts');
-        await compiler.compile(mainCtx);
+        console.time('compile path.ts');
+        await compiler.compile(pathCtx);
         console.log('outDir', compiler.compilerOptions.outDir);
-        console.timeEnd('compile main.ts');
+        console.timeEnd('compile path.ts');
 
         const {ClassPath} = require(`${__dirname}/src1/dist1/path.js`);
         const cp = new ClassPath();
