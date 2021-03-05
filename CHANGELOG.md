@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/searchfe/makit-recipe-tsc/compare/v1.1.1...v1.1.2) (2021-03-05)
+
+
+### Performance Improvements
+
+* only emit target file ([9db13de](https://github.com/searchfe/makit-recipe-tsc/commit/9db13deef67a7ec34221f1cbee65af513311f6ee))
+
 ## [1.1.1](https://github.com/searchfe/makit-recipe-tsc/compare/v1.1.0...v1.1.1) (2021-02-25)
 
 
