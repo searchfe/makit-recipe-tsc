@@ -50,7 +50,7 @@
     "eslint-plugin-standard": "^4.0.0",
     "jest": "^24.7.1",
     "nyc": "^13.0.1",
-    "semantic-release": "^17.0.8",
+    "semantic-release": "^19.0.3",
     "source-map-support": "^0.5.9",
     "ts-jest": "^24.0.2",
     "ts-morph": "^6.0.2",
